@@ -17,8 +17,10 @@ export class userServicesService {
     }
 
   usersList:user[] = [
-      new user("Zouhri","Mohammed","Adresse 01","30001","Fès","Ingenieur FullStack","34539440","zouhri53@gmail.com"),
-      new user("Ezzeri","Anass","Adresse 02","30008","Fès","UI Designer","645909908","anass.zouhri53@gmail.com")
+      new user("Zouhri","Mohammed","Adresse 01","30001","Fès","Developpeur","34539440","zouhri53@gmail.com"),
+      new user("Zouhri","Mohammed","Adresse 02","30002","Fès","Designer","34539440","zouhri53@gmail.com"),
+      new user("Zouhri","Mohammed","Adresse 03","30003","Fès","Ingenieur FullStack","34539440","zouhri53@gmail.com"),
+      new user("Zouhri","Mohammed","Adresse 04","30004","Fès","Responsable Informatique","34539440","zouhri53@gmail.com")
     ]
 
   showAlert(message:string, type:string, show:boolean )

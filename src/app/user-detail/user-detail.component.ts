@@ -20,14 +20,13 @@ export class UserDetailComponent implements OnInit {
       nom: new FormControl('', [Validators.required,Validators.maxLength(12)]),
       prenom: new FormControl('', [Validators.required]),
       rue: new FormControl('', [Validators.required]),
-      cp: new FormControl('', [Validators.required]),
+      cp: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
       ville: new FormControl('', [Validators.required]),
       fonction: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
       email: new FormControl('', [Validators.required,Validators.email])
   })
 
-  
 
   constructor( private userService:userServicesService, private route:Router, private activeroute:ActivatedRoute ) 
     { }
