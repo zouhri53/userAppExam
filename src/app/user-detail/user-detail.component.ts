@@ -30,10 +30,9 @@ export class UserDetailComponent implements OnInit {
     
   }
 
-  onUpdate() {
-
-      this.userService.updateUser(Number(this.usId),this.userAccountUpdate.value)
-    
+  onUpdate() 
+  {
+      this.userService.updateUser(Number(this.usId),this.userAccountUpdate.value) 
   }
 
   getUserByPostedId(postedId:number)
