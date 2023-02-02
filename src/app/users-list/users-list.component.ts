@@ -28,7 +28,7 @@ export class UsersListComponent implements OnInit {
       {
           this.initializeUserList()
           this.usersList = this.usersList.filter(
-            us => us.nom.toLocaleLowerCase()
+            us => us.nom .toLocaleLowerCase()
             .includes(this.userSearchInput.toLocaleLowerCase())
             )
       }
