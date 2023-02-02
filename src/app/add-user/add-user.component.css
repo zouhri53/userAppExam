@@ -1,0 +1,36 @@
+.ajouter
+{
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 40px;
+    font-weight: bold;
+    background: linear-gradient(0deg, rgba(34,151,195,1) 0%, rgba(142,45,253,1) 100%);
+    color: white;
+    font-size: 14px;
+}
+.annuler
+{
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 40px;
+    font-weight: bold;
+    background: linear-gradient(0deg, rgba(195,182,34,1) 0%, rgba(253,146,45,1) 100%);
+    color: white;
+    font-size: 14px;
+}
+.form-control,.form-select
+{
+    background-color: #e8e8e8;
+}
+.userdiv{
+    background-color:white ;
+    text-align: center;
+}
+.bi-person-circle
+{
+    font-size: 40px;
+}
+.require
+{
+    border: 1px solid red;
+}

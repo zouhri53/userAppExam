@@ -1,0 +1,54 @@
+<div class="col-md-8 offset-md-1  p-5 userlistdiv">
+  <i class="bi bi-person-lines-fill"></i>
+    <h5> List des utilisateurs</h5>
+    <p class="mb-5 text-muted"></p>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon3">Vous cherchez ?</span>
+      <input type="text" class="form-control" placeholder="..." [(ngModel)]="userSearchInput" (ngModelChange)="searchUser()"/>
+    </div>
+    <div *ngIf="alert.show" class="alert alert-{{ alert.type }} alert-dismissible fade show" role="alert">
+      <strong>{{ alert.message }}</strong> 
+      <button type="button" id="alertCloser" (click)="closeAlert()" class="btn btn-default">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Fonction</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersList">
+        <td>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-person-circle"></i>
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{ user.nom }}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{ user.prenom }}</p>
+          <!-- <p class="text-muted mb-0">IT department</p> -->
+        </td>
+        <td>
+          <!-- <span class="badge badge-success rounded-pill d-inline">Active</span> -->
+          <p class="fw-normal mb-1">{{ user.fonction }}</p>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <a [routerLink]="['/userDeatail/', user.id]" class="btn btn-link btn-sm btn-rounded mb-2 edit">
+            Modifier
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

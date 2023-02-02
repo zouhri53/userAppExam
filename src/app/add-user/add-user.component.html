@@ -1,0 +1,109 @@
+<div class="col-md-8 offset-md-2  p-5 userdiv">
+  <i class="bi bi-person-circle"></i>
+    <h5> Ajouter un nouvel utilisateur</h5>
+    <p class="mb-5 text-muted">Merci de remplir le formulaire ci dessous avant de valider.</p>
+<form [formGroup]="userAccount" (ngSubmit)="onSubmit()">
+
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+            <input type="text" id="nom"  formControlName="nom" placeholder="Nom" class="form-control" />
+        </div>
+        <div *ngIf="userAccount.controls['nom'].invalid && (userAccount.controls['nom'].dirty || userAccount.controls['nom'].touched)">
+          <div *ngIf="userAccount.controls['nom'].errors?.['required']" class="text-danger text-left">
+            <span>Nom : obligatoire.</span>
+          </div>
+          <div *ngIf="userAccount.controls['nom'].errors?.['maxlength']">
+            <span>Nom : taille ne doit pas dépassé 12 caractére.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+            <input type="text" id="prenom" formControlName="prenom" placeholder="Prénom" class="form-control" />
+        </div>
+        <div *ngIf="userAccount.controls['prenom'].invalid && (userAccount.controls['prenom'].dirty || userAccount.controls['prenom'].touched)">
+          <div *ngIf="userAccount.controls['prenom'].errors?.['required']" class="text-danger">
+            <span>Prénom : obligatoire.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-6">
+          <div class="form-outline">
+            <div class="input-group">
+              <div class="input-group-text"><span class="bi bi-geo-alt"> </span></div>
+                <input type="text" id="rue" formControlName="rue" placeholder="Adresse Rue" class="form-control" />
+            </div>
+          </div>
+          <div *ngIf="userAccount.controls['rue'].invalid && (userAccount.controls['rue'].dirty || userAccount.controls['rue'].touched)">
+            <div *ngIf="userAccount.controls['rue'].errors?.['required']" class="text-danger">
+              <span>Adresse rue : obligatoire.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+              <input type="text" id="cp" formControlName="cp" placeholder="Code postal" class="form-control" />
+          </div>
+          <div *ngIf="userAccount.controls['cp'].invalid && (userAccount.controls['cp'].dirty  || userAccount.controls['cp'].touched)">
+            <div *ngIf="userAccount.controls['cp'].errors?.['pattern']" class="text-danger">code postal : Accepte que des numéros.</div>
+            <div *ngIf="userAccount.controls['cp'].errors?.['required']" class="text-danger">code postal : obligatoire.</div>
+          </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <input type="text" id="ville" formControlName="ville" placeholder="Ville" class="form-control" />
+            </div>
+            <div *ngIf="userAccount.controls['ville'].invalid && (userAccount.controls['ville'].dirty  || userAccount.controls['ville'].touched)">
+              <div *ngIf="userAccount.controls['ville'].errors?.['required']" class="text-danger">ville : obligatoire.</div>
+            </div>
+          </div>
+    </div>
+
+    <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <div class="input-group">
+                <div class="input-group-text">Fonction</div>
+              <!-- <label class="form-label text-muted" for="form3Example2">Fonction</label> -->
+                <select class="form-select" formControlName="fonction" id="fonction">
+                  <option value="Developpeur">Developpeur</option>
+                  <option value="Designer">Designer</option>
+                  <option value="Ingenieur FullStack">Ingenieur FullStack</option>
+                  <option value="Responsable Informatique">Responsable Informatique</option>
+                </select>
+              </div>
+            </div>
+            <div *ngIf="userAccount.controls['fonction'].invalid && (userAccount.controls['fonction'].dirty  || userAccount.controls['fonction'].touched)">
+              <div *ngIf="userAccount.controls['fonction'].errors?.['required']" class="text-danger">fonction : obligatoire.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <div class="input-group">
+                <div class="input-group-text"><span class="bi bi-envelope-fill"> </span></div>
+                  <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control" />
+                </div>
+            </div>
+            <div *ngIf="userAccount.controls['email'].invalid && (userAccount.controls['email'].dirty  || userAccount.controls['email'].touched)">
+              <div *ngIf="userAccount.controls['email'].errors?.['required']" class="text-danger">email : obligatoire.</div>
+            </div>
+          </div>
+    </div>
+
+    <div class="input-group">
+        <div class="input-group-text"><span class="fi fi-ma"> </span>&nbsp;+212</div>
+        <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="000 000000" />
+        <div *ngIf="userAccount.controls['phone'].invalid && (userAccount.controls['phone'].dirty  || userAccount.controls['phone'].touched)">
+          <div *ngIf="userAccount.controls['phone'].errors?.['pattern']" class="text-danger">Phone : Accepte que des numéros.</div>
+          <div *ngIf="userAccount.controls['phone'].errors?.['required']" class="text-danger">Phone : obligatoire.</div>
+        </div>
+    </div>
+  
+    <button type="submit" [disabled]="!userAccount.valid" class="btn btn-primary btn-block my-4 ajouter"><i class="bi bi-person-plus"></i> Ajouter</button>
+    <button type="button" (click)="clearInputs()" class="btn btn-warning btn-block my-4 mx-2 annuler"><i class="bi bi-x"></i> Annuler</button>
+  </form>
+</div>

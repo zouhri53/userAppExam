@@ -1,0 +1,31 @@
+.userlistdiv{
+    background-color:white ;
+    text-align: center;
+}
+.bi-person-lines-fill
+{
+    font-size: 40px;
+}
+.bi-person-circle
+{
+    font-size: 25px;
+}
+.edit
+{
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    background: linear-gradient(0deg, rgba(195,182,34,1) 0%, rgba(253,146,45,1) 100%);
+    color: white;
+}
+.edit:hover,delete:hover
+{
+    color: white;
+}
+#alertCloser
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+}

@@ -1,0 +1,32 @@
+.enregistrer
+{
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 40px;
+    font-weight: bold;
+    background: linear-gradient(0deg, rgba(34,151,195,1) 0%, rgba(142,45,253,1) 100%);
+    color: white;
+    font-size: 14px;
+}
+.delete
+{
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    background: rgb(195,34,91);
+    background: linear-gradient(0deg, rgba(195,34,91,1) 0%, rgba(253,45,45,1) 100%);
+    color: white;
+}
+.form-control,.form-select
+{
+    background-color: #e8e8e8;
+}
+.userUpdateDiv{
+    background-color:white ;
+    text-align: center;
+}
+.bi-person-circle
+{
+    font-size: 40px;
+}
