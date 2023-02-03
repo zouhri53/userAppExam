@@ -15,10 +15,10 @@
               </div>
           </div>
           <div *ngIf="userAccountUpdate.controls['nom'].invalid && (userAccountUpdate.controls['nom'].dirty || userAccountUpdate.controls['nom'].touched)">
-            <div *ngIf="userAccountUpdate.controls['nom'].errors?.['required']" class="text-danger text-left">
+            <div *ngIf="userAccountUpdate.controls['nom'].errors?.['required']" class="text-danger">
               <span>*Obligatoire.</span>
             </div>
-            <div *ngIf="userAccountUpdate.controls['nom'].errors?.['maxlength']">
+            <div *ngIf="userAccountUpdate.controls['nom'].errors?.['maxlength']" class="text-danger">
               <span>*Taille plus que 12 caractére.</span>
             </div>
           </div>
