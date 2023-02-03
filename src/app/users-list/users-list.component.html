@@ -2,9 +2,15 @@
   <i class="bi bi-person-lines-fill"></i>
     <h5> List des utilisateurs</h5>
     <p class="mb-5 text-muted"></p>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon3">Vous cherchez ?</span>
-      <input type="text" class="form-control" placeholder="..." [(ngModel)]="userSearchInput" (ngModelChange)="searchUser()"/>
+    <div class="row mb-3">
+      <form [formGroup]="searchUSerBar">
+        <div class="form-outline">
+          <div class="input-group">
+              <div class="input-group-text">Vous recherchez ?</div>
+              <input type="text" class="form-control" id="userSearchInput" formControlName="userSearchInput" placeholder="..." />
+          </div>
+        </div>
+      </form>
     </div>
     <div *ngIf="alert.show" class="alert alert-{{ alert.type }} alert-dismissible fade show" role="alert">
       <strong>{{ alert.message }}</strong> 

@@ -1,3 +1,4 @@
+import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { user } from './../userModel/user.model';
 import { userServicesService } from '../services/user-services.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,26 +11,36 @@ import { Component, OnInit } from '@angular/core';
 export class UsersListComponent implements OnInit {
 
   usersList: user[] = []
-  userSearchInput: string = ''
+  searchUSerBar = new FormGroup({
+    userSearchInput: new FormControl('')
+  })
   alert = this.userService.operationAlert
 
   constructor(private userService: userServicesService) { }
 
-  ngOnInit(): void { this.initializeUserList() }
+  ngOnInit(): void { 
+
+    this.initializeUserList()
+    this.searchUSerBar.get('userSearchInput')!.valueChanges.subscribe(currentValue => {
+        console.log(currentValue)
+        this.searchUser(<string>currentValue)
+      })
+
+   }
 
   initializeUserList()
   {
       this.usersList = this.userService.getUsersList();
   }
 
-  searchUser()
+  searchUser(searchVal:string)
     {
-      if(this.userSearchInput.length > 0)
+      if(searchVal.length > 0)
       {
           this.initializeUserList()
           this.usersList = this.usersList.filter(
             us => us.nom .toLocaleLowerCase()
-            .includes(this.userSearchInput.toLocaleLowerCase())
+            .includes(searchVal.toLocaleLowerCase())
             )
       }
       else
