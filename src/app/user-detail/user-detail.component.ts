@@ -44,7 +44,7 @@ export class UserDetailComponent implements OnInit {
       this.userAccountUpdate = new FormGroup({
         nom: new FormControl(getUser!.nom, [Validators.required,Validators.maxLength(12)]),
         prenom: new FormControl(getUser!.prenom, [Validators.required]),
-        rue: new FormControl(getUser?.adresse, [Validators.required]),
+        rue: new FormControl(getUser!.adresse, [Validators.required]),
         cp: new FormControl(getUser!.cp, [Validators.required, Validators.pattern("^[0-9]*$")]),
         ville: new FormControl(getUser!.ville, [Validators.required]),
         fonction: new FormControl(getUser!.fonction, [Validators.required]),
