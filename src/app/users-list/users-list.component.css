@@ -29,3 +29,16 @@
     top: 0;
     right: 0;
 }
+a{
+    text-decoration: none;
+}
+.newUs
+{
+    background: linear-gradient(0deg, rgba(195,182,34,1) 0%, rgba(253,146,45,1) 100%);
+    color: white;
+    font-weight: bold;
+}
+.bi-person
+{
+    font-size: 18px;
+}
