@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class AddUserComponent implements OnInit {
 
-  userAccount: FormGroup = new FormGroup({})
+  userAccount: FormGroup | any
   
   constructor(private userService:userServicesService, private route:Router) { }
 
