@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class UsersListComponent implements OnInit {
 
   usersList: user[] = []
-  searchUSerBar = new FormGroup({
+  searchUserBar = new FormGroup({
     userSearchInput: new FormControl('')
   })
   alert = this.userService.operationAlert
@@ -21,7 +21,7 @@ export class UsersListComponent implements OnInit {
   ngOnInit(): void { 
 
     this.initializeUserList()
-    this.searchUSerBar.get('userSearchInput')!.valueChanges.subscribe(currentValue => {
+    this.searchUserBar.get('userSearchInput')!.valueChanges.subscribe(currentValue => {
         this.searchUser(<string>currentValue)
       })
 
