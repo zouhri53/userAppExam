@@ -4,7 +4,7 @@
     padding-left: 20px;
     padding-right: 40px;
     font-weight: bold;
-    background: linear-gradient(0deg, rgba(34,151,195,1) 0%, rgba(142,45,253,1) 100%);
+    background: linear-gradient(0deg, rgba(195,182,34,1) 0%, rgba(253,146,45,1) 100%);
     color: white;
     font-size: 14px;
 }
@@ -14,7 +14,7 @@
     padding-left: 20px;
     padding-right: 40px;
     font-weight: bold;
-    background: linear-gradient(0deg, rgba(195,182,34,1) 0%, rgba(253,146,45,1) 100%);
+    background: linear-gradient(0deg, rgba(57,47,51,1) 0%, rgba(126,126,126,1) 100%);
     color: white;
     font-size: 14px;
 }

@@ -24,7 +24,7 @@ export class UsersListComponent implements OnInit {
     this.searchUserBar.get('userSearchInput')!.valueChanges.subscribe(currentValue => {
         this.searchUser(<string>currentValue)
       })
-
+      
    }
 
   initializeUserList()
