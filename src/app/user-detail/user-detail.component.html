@@ -4,8 +4,15 @@
       <h5>{{ userName + ' ' + userLastName }}</h5>
       <p class="mb-5 text-muted">Merci de remplir le formulaire ci dessous avant de valider.</p>
   </div>
-  <form [formGroup]="userAccountUpdate" (ngSubmit)="onUpdate()">
+
+  <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ alert }}</strong> 
+    <button type="button" id="alertCloser" (click)="closeAlert()" class="btn btn-default">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   
+  <form [formGroup]="userAccountUpdate" (ngSubmit)="onUpdate()">
       <div class="row mb-4">
         <div class="col">
           <div class="form-outline">
@@ -43,11 +50,11 @@
             <div class="form-outline">
               <div class="input-group">
                 <div class="input-group-text"><span class="bi bi-geo-alt"> </span></div>
-                  <input type="text" id="rue" formControlName="rue" placeholder="Adresse Rue" class="form-control" />
+                  <input type="text" id="adresse" formControlName="adresse" placeholder="Adresse" class="form-control" />
               </div>
             </div>
-            <div *ngIf="userAccountUpdate.controls['rue'].invalid && (userAccountUpdate.controls['rue'].dirty || userAccountUpdate.controls['rue'].touched)">
-              <div *ngIf="userAccountUpdate.controls['rue'].errors?.['required']" class="text-danger">
+            <div *ngIf="userAccountUpdate.controls['adresse'].invalid && (userAccountUpdate.controls['adresse'].dirty || userAccountUpdate.controls['adresse'].touched)">
+              <div *ngIf="userAccountUpdate.controls['adresse'].errors?.['required']" class="text-danger">
                 <span>*Obligatoire.</span>
               </div>
             </div>
@@ -76,7 +83,6 @@
               <div class="form-outline">
                 <div class="input-group">
                   <div class="input-group-text">Fonction</div>
-                <!-- <label class="form-label text-muted" for="form3Example2">Fonction</label> -->
                   <select class="form-select" formControlName="fonction" id="fonction">
                     <option value="Developpeur">Developpeur</option>
                     <option value="Designer">Designer</option>
@@ -93,7 +99,7 @@
               <div class="form-outline">
                 <div class="input-group">
                   <div class="input-group-text"><span class="bi bi-envelope-fill"> </span></div>
-                    <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control" />
+                    <input type="email" id="email" formControlName="email" placeholder="email" class="form-control" />
                   </div>
               </div>
               <div *ngIf="userAccountUpdate.controls['email'].invalid && (userAccountUpdate.controls['email'].dirty  || userAccountUpdate.controls['email'].touched)">
@@ -115,9 +121,7 @@
           <div *ngIf="userAccountUpdate.controls['phone'].errors?.['required']" class="text-danger">*Obligatoire.</div>
         </div>
       </div>
-
       
-    
       <button type="submit" [disabled]="!userAccountUpdate.valid" class="btn btn-block mb-4 enregistrer"><i class="bi bi-save"></i> Enregistrer</button>
       <button type="button" (click)="deleteUser()" class="btn btn-warning btn-block mb-4 mx-2 delete"><i class="bi bi-x"></i> Supprimer</button>
     </form>

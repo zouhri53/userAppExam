@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { userServicesService } from '../services/user-services.service';
+import { UserServicesService } from '../services/user-services.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class AddUserComponent implements OnInit {
 
   userAccount: FormGroup | any
   
-  constructor(private userService:userServicesService, private route:Router) { }
+  constructor(private userService:UserServicesService, private route:Router) { }
 
   ngOnInit(): void { 
 
@@ -22,7 +22,7 @@ export class AddUserComponent implements OnInit {
 
         nom: new FormControl('', [Validators.required,Validators.maxLength(12)]),
         prenom: new FormControl('', [Validators.required]),
-        rue: new FormControl('', [Validators.required]),
+        adresse: new FormControl('', [Validators.required]),
         cp: new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]),
         ville: new FormControl('', [Validators.required]),
         fonction: new FormControl('', [Validators.required]),
@@ -55,10 +55,14 @@ export class AddUserComponent implements OnInit {
 
   onSubmit() {
       this.userService.addUSer(this.userAccount.value)
+      .subscribe({
+        next: res => this.userService.subject.next(res.message),
+        error: err => this.userService.subject.next(err)
+      });
+      this.route.navigate(['/'])
   }
 
-  clearInputs()
-  {
+  clearInputs() {
       this.userAccount.reset()
   }
 

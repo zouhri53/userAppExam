@@ -1,6 +1,5 @@
-export class user 
+export class User 
 {
-    static id:number = 0;
     constructor (
         public nom:string,
         public prenom:string,
@@ -10,9 +9,7 @@ export class user
         public fonction:string,
         public phone:string,
         public email:string,
-        public id?:number)
-    { 
-       this.id = user.id++;
-    }
+        public _id:string)
+    { }
 
 }

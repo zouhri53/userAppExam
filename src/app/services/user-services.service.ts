@@ -1,71 +1,64 @@
 import { Injectable } from '@angular/core';
-import { user } from '../userModel/user.model';
+import { User } from '../userModel/user.model';
 import { Router } from '@angular/router';
+import { Observable, Subject, catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+export class UserServicesService {
+  constructor(private route: Router, private httpClient: HttpClient) {}
 
-export class userServicesService {
+  url = 'http://localhost:3000/api/users';
+  subject = new Subject<any>();
 
-  constructor(private route:Router) { }
+  addUSer(data: any): Observable<any> {
+    return this.httpClient
+      .post(`${this.url}/`, data)
+      .pipe(catchError(this.handleError));
+  }
 
-  operationAlert = { 
-      message: "",
-      type: "",
-      show: false
+  updateUser(userId: string, data: any): Observable<any> {
+    return this.httpClient
+      .put(`${this.url}/${userId}`, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  DeleteUser(userId: string): Observable<any> {
+    return this.httpClient
+      .delete(`${this.url}/${userId}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getUsersList(): Observable<User[]> {
+    return this.httpClient
+      .get<User[]>(`${this.url}/`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getUserById(userId: any): Observable<User> {
+    return this.httpClient
+      .get<User>(`${this.url}/${userId}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: string;
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occured: ', error.error.message);
+      errorMessage = `An error occured: ${error.error.message}`;
+      this.subject.next(errorMessage);
+    } else {
+      // Backend Side
+      console.error(
+        `Backend returned code ${error.status} ` + `body was: ${error}`
+      );
+      errorMessage =
+        `Backend returned code ${error.status} ` + `body was: ${error}`;
+      this.subject.next(errorMessage);
     }
 
-  usersList:user[] = [
-      new user("Zouhri","Mohammed","Adresse 01","30001","Fès","Developpeur","34539440","zouhri53@gmail.com"),
-      new user("Zouhri","Mohammed","Adresse 02","30002","Fès","Designer","34539440","zouhri53@gmail.com"),
-      new user("Zouhri","Mohammed","Adresse 03","30003","Fès","Ingenieur FullStack","34539440","zouhri53@gmail.com"),
-      new user("Zouhri","Mohammed","Adresse 04","30004","Fès","Responsable Informatique","34539440","zouhri53@gmail.com")
-    ]
-
-  showAlert(message:string, type:string, show:boolean )
-  {
-    this.operationAlert.message = message
-    this.operationAlert.type = type
-    this.operationAlert.show = show
+    return throwError(() => console.error(new Error('Somthing bad happend; please try again later,' + errorMessage)));
   }
-
-  addUSer(data:any)
-  {
-      this.usersList.push(new user(data.nom,data.prenom,data.rue,data.cp,data.ville,data.fonction,data.phone,data.email))
-      this.showAlert("Nouvel utilisateur ajouté avec succés.", "success", true )
-      this.route.navigate(['usersList'])
-  }
-
-  updateUser(userId:number,data:any)
-  {
-      let userToUpdate = this.getUserById(userId)
-      let indexOfUserToUpdate = this.usersList.indexOf(userToUpdate!)
-      const userAfterUpdate = new user(data.nom,data.prenom,data.rue,data.cp,data.ville,data.fonction,data.phone,data.email)
-      this.usersList[indexOfUserToUpdate] = userAfterUpdate
-      this.showAlert("Utilisateur modifié avec succés.", "warning", true )
-      this.route.navigate(['usersList'])
-  }
-
-  DeleteUser(userId:number)
-  {
-      let userToDelete = this.getUserById(userId)
-      let indexOfUserToDelete = this.usersList.indexOf(userToDelete!)
-      this.usersList.splice(indexOfUserToDelete,1)
-      this.showAlert("Utilisateur supprimé avec succés.", "danger", true )
-      this.route.navigate(['usersList'])
-  }
-
-  getUsersList()
-  {
-      return this.usersList;
-  }
-
-  getUserById(id:number)
-  { 
-      return this.usersList.find((obj) => {
-        return obj.id === id;
-      })
-  }
-
 }

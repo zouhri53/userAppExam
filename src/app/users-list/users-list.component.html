@@ -13,8 +13,8 @@
         </div>
       </form>
     </div>
-    <div *ngIf="alert.show" class="alert alert-{{ alert.type }} alert-dismissible fade show" role="alert">
-      <strong>{{ alert.message }}</strong> 
+    <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ alert }}</strong> 
       <button type="button" id="alertCloser" (click)="closeAlert()" class="btn btn-default">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -30,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of usersList">
+      <tr *ngFor="let user of usersList | async">
         <td>
           <div class="d-flex align-items-center">
             <i class="bi bi-person-circle"></i>
@@ -47,7 +47,7 @@
         </td>
         <td>{{ user.email }}</td>
         <td>
-          <a [routerLink]="['/userDeatail/', user.id]" class="btn btn-link btn-sm btn-rounded mb-2 edit">
+          <a [routerLink]="['/userDetail/', user._id]" class="btn btn-link btn-sm btn-rounded mb-2 edit">
             Modifier
           </a>
         </td>
